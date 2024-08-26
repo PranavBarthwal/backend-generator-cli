@@ -1,0 +1,16 @@
+{
+  "name": "backend-generator-cli",
+  "version": "1.0.2",
+  "main": "index.js",
+  "bin": {
+  "backend-gen": "./index.js"
+  },
+
+  "author": "Pranav Barthwal",
+  "license": "MIT",
+  "description": "A simple CLI tool to generate a backend project template.",
+  "dependencies": {
+    "commander": "^12.1.0",
+    "fs-extra": "^11.2.0"
+  }
+}
