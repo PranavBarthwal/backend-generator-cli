@@ -1,3 +1,5 @@
+<img src="https://github.com/user-attachments/assets/1226438f-19e0-46e4-beff-5483e429ee69" width=200>
+
 # Backend Generator CLI
 
 A simple and efficient CLI tool to generate a structured backend project template quickly.
