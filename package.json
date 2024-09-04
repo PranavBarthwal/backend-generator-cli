@@ -2,8 +2,9 @@
   "name": "backend-generator-cli",
   "version": "1.2.0",
   "main": "index.js",
+  "type": "module",
   "bin": {
-  "backend-gen": "./index.js"
+  "run": "./index.js"
   },
 
   "author": "Pranav Barthwal",
