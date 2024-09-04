@@ -176,7 +176,7 @@ npm install -g backend-generator-cli
 Navigate to your desired directory and run the following command to generate the project structure:
 
 ```bash
-backend-gen create-project
+run create-project
 ```
 
 This will create a new backend project with the following structure:
@@ -217,7 +217,7 @@ You are now inside the `utils` folder where you will generate the file upload ha
 Next, add a `multer` file upload handler by running the following command:
 
 ```bash
-backend-gen generate-snippet multer-file-upload
+run generate-snippet multer-file-upload
 ```
 
 This command will create a new file called `multer-file-upload.js` in the `src/utils` directory, which is now your current working directory. The content of this file will look like this:
