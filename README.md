@@ -1,7 +1,9 @@
 <img src="https://github.com/user-attachments/assets/1226438f-19e0-46e4-beff-5483e429ee69" width=200>
 
-
 # Backend Generator CLI
+> 🎉 **Now supporting code snippet generation!** 🚀
+
+![npm](https://img.shields.io/npm/dt/backend-generator-cli?color=brightgreen&label=Total%20Downloads&style=for-the-badge) ![npm](https://img.shields.io/npm/dw/backend-generator-cli?color=blue&label=Weekly%20Downloads&style=for-the-badge)
 
 **Backend Generator CLI** is a simple yet powerful command-line tool that helps you quickly scaffold a well-structured backend project. With built-in best practices and customizable code snippets, this tool is designed to streamline your development workflow and help you focus on what matters: building your application.
 
