@@ -1,7 +1,7 @@
 <img src="https://github.com/user-attachments/assets/1226438f-19e0-46e4-beff-5483e429ee69" width=200>
 
 # Backend Generator CLI
-> 🎉 **Now supporting code snippet generation!** 🚀
+> **Now supporting AI powered code snippet generation!** 🚀
 
 ![npm](https://img.shields.io/npm/dt/backend-generator-cli?color=brightgreen&label=Total%20Downloads&style=for-the-badge) ![npm](https://img.shields.io/npm/dw/backend-generator-cli?color=blue&label=Weekly%20Downloads&style=for-the-badge)
 
@@ -12,7 +12,20 @@
 - **Instant Backend Setup**: Generate a clean, well-organized backend project structure with a single command.
 - **Best Practices Built-in**: The generated project follows industry-standard best practices for scalable backend development.
 - **Custom Code Snippets**: Insert predefined code snippets such as API error handling, file uploading, and more using simple CLI commands.
+- **AI-powered Custom Code Snippets**: Generate customizable code snippets using Generative AI with simple CLI commands.
 - **Modular and Extensible**: The tool allows you to customize and expand the project structure to meet your specific needs.
+
+## Index
+- [Installation](#installation)
+- [Commands](#commands)
+  - [1. run create-project](#1-run-create-project)
+  - [2. run generate-snippet](#2-run-generate-snippet-snippet-name)
+  - [3. run generate-ai-snippet](#3-run-generate-ai-snippet-snippetname)
+- [Full User Journey Example](#full-user-journey-example)
+- [Future Enhancements](#future-enhancements)
+- [License](#license)
+
+---
 
 ## Installation
 
@@ -24,16 +37,9 @@ npm install -g backend-generator-cli
 
 After installation, you will have access to two main commands: `create-project` to generate the backend structure and `generate-snippet` to inject code snippets.
 
-## Available Snippets
-
-- **`async-ops-handler`**: Handles async operations with proper error handling.
-- **`custom-api-error`**: Standardizes API error responses for your app.
-- **`custom-api-response`**: Standardizes successful API responses.
-- **`multer-file-upload`**: Sets up file upload handling using `multer`.
-
 ## Commands
 
-### 1. `create-project`
+### 1. `run create-project`
 Generate a new backend project with a pre-configured folder structure:
 
 ```bash
@@ -64,7 +70,7 @@ This command will create a new backend project structure in your current directo
 
 This structure is clean, easy to navigate, and ready to be extended with your own business logic and data models.
 
-### 2. `generate-snippet <snippet-name>`
+### 2. `run generate-snippet <snippet-name>`
 
 Generate and inject predefined code snippets into your project. Snippets are placed in individual files in your current working directory. 
 
@@ -78,7 +84,7 @@ This command will create a new file `multer-file-upload.js` in the current worki
 
 ### Available Snippets
 
-1. **`async-ops-handler.js`**:
+1. **`async-ops-handler`**:
    Handles asynchronous operations with error handling.
 
    **Code Snippet**:
@@ -94,7 +100,7 @@ This command will create a new file `multer-file-upload.js` in the current worki
     export { asyncHandler }
    ```
 
-2. **`custom-api-error.js`**:
+2. **`custom-api-error`**:
    Standardizes error responses for your API.
 
    **Code Snippet**:
@@ -123,7 +129,7 @@ This command will create a new file `multer-file-upload.js` in the current worki
     export { ApiError }
    ```
 
-3. **`custom-api-response.js`**:
+3. **`custom-api-response`**:
    Standardizes successful API responses.
 
    **Code Snippet**:
@@ -140,7 +146,7 @@ This command will create a new file `multer-file-upload.js` in the current worki
     export {ApiResponse}
    ```
 
-4. **`multer-file-upload.js`**:
+4. **`multer-file-upload`**:
    Sets up a file upload service using `multer`.
 
    **Code Snippet**:
@@ -160,6 +166,51 @@ This command will create a new file `multer-file-upload.js` in the current worki
 
    ```
 
+### 3. `run generate-ai-snippet <snippetName>`
+With the new AI-powered code generation feature, you can generate customized code snippets. For instance, to generate a code snippet for a specific backend functionality, you can run:
+
+```bash
+run generate-ai-snippet <snippetName>
+```
+
+Example:
+
+```bash
+run generate-ai-snippet login-controller
+```
+
+This will generate a code snippet for login-controller using AI that looks like :
+```bash
+Generated Code Snippet for login-controller:
+
+const User = require('../models/User');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
+module.exports.login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(401).json({ message: 'Invalid credentials' });
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(401).json({ message: 'Invalid credentials' });
+    }
+
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    res.json({ token, user: { _id: user._id, name: user.name, email: user.email } });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });        
+  }
+};
+
+The code snippet is generated successfuly and may require some modifications to fit your use case.
+```
 
 ## Full User Journey Example
 
@@ -281,7 +332,7 @@ This flow demonstrates how you can set up your backend project structure and uti
 ## Future Enhancements
 
 - Add more predefined snippets for common backend use cases.
-- Add ability to generate code snippets using AI.
+- Add a controller to get the most in-demand snippets.
 
 ## License
 
