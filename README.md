@@ -334,6 +334,20 @@ This flow demonstrates how you can set up your backend project structure and uti
 - Add more predefined snippets for common backend use cases.
 - Add a controller to get the most in-demand snippets.
 
+
+## 👀 Our Contributors
+
+- We extend our heartfelt gratitude for your invaluable contribution to our project! Your efforts play a pivotal role in elevating Ratna-Supermarket to greater heights.
+- Make sure you show some love by giving ⭐ to our repository.
+
+<div align="center">
+
+  <a href="https://github.com/PranavBarthwal/backend-generator-cli">
+    <img src="https://contrib.rocks/image?repo=PranavBarthwal/backend-generator-cli&&max=1000" />
+  </a>
+</div>
+
+
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
