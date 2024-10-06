@@ -1,0 +1,39 @@
+name: Publish to npm
+
+on:
+  push:
+    branches:
+      - main  # Triggers when you push to the main branch
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'  # Use your preferred Node.js version
+          registry-url: 'https://registry.npmjs.org/'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test  # Ensure all tests pass before publishing
+
+      - name: Bump version
+        run: |
+          npm version patch  # Automatically bump the patch version
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git commit -am "chore(release): bump version"  # Commit the version bump
+          git push origin main  # Push the changes to GitHub
+
+      - name: Publish to npm
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}  # Uses the npm token secret
