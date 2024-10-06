@@ -2,8 +2,10 @@
 
 import { program } from 'commander';
 import fs from 'fs-extra';
+import packages from './snippets-packages.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import {exec} from 'node:child_process'; 
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import chalk from 'chalk';
 import ora from 'ora'; // Import the ora package
@@ -83,6 +85,7 @@ program
   .action((snippetName) => {
     try {
       // Check if the snippet exists in the snippets folder
+      let packagesString = ' ';
       const snippetFile = path.join(SNIPPET_PATH, `${snippetName}.js`);
 
       if (!fs.existsSync(snippetFile)) {
@@ -90,12 +93,16 @@ program
         return;
       }
 
+      if (packages[snippetName]!=undefined) {
+        packagesString = packages[snippetName].packagesList.join(" "); 
+      }
       // Define the path where the new snippet file will be created in the working directory
       const newSnippetFilePath = path.join(DESTINATION_PATH, `${snippetName}.js`);
 
       // Copy the snippet file content to the new file in the working directory
       fs.copySync(snippetFile, newSnippetFilePath);
-
+      console.log(chalk.yellow("Installing all the required packages for the snippet..."))
+      exec(`npm install ${packagesString}`);
       console.log(chalk.green(`\nSnippet "${snippetName}" has been successfully created as "${snippetName}.js" in your current directory!\n`));
     } catch (err) {
       console.error(chalk.red('Error while generating snippet file:'), err);
