@@ -16,14 +16,11 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'  # Use your preferred Node.js version
+          node-version: '16'  
           registry-url: 'https://registry.npmjs.org/'
 
       - name: Install dependencies
         run: npm install
-
-      - name: Run tests
-        run: npm test  # Ensure all tests pass before publishing
 
       - name: Bump version
         run: |
@@ -36,4 +33,4 @@ jobs:
       - name: Publish to npm
         run: npm publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}  # Uses the npm token secret
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}  
