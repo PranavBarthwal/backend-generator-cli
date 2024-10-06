@@ -16,21 +16,27 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'  
+          node-version: '16'
           registry-url: 'https://registry.npmjs.org/'
 
       - name: Install dependencies
         run: npm install
 
+
+      - name: Commit uncommitted changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add .  # Add all uncommitted changes
+          git commit -m "chore: commit uncommitted changes" || echo "No changes to commit"
+
       - name: Bump version
         run: |
           npm version patch  # Automatically bump the patch version
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git commit -am "chore(release): bump version"  # Commit the version bump
-          git push origin main  # Push the changes to GitHub
+          git push origin main  # Push the version bump to GitHub
 
       - name: Publish to npm
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}  
+
