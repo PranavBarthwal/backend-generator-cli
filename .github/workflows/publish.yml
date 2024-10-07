@@ -1,0 +1,42 @@
+name: Publish to npm
+
+on:
+  push:
+    branches:
+      - main  # Triggers when you push to the main branch
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          registry-url: 'https://registry.npmjs.org/'
+
+      - name: Install dependencies
+        run: npm install
+
+
+      - name: Commit uncommitted changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add .  # Add all uncommitted changes
+          git commit -m "chore: commit uncommitted changes" || echo "No changes to commit"
+
+      - name: Bump version
+        run: |
+          npm version patch  # Automatically bump the patch version
+          git push origin main  # Push the version bump to GitHub
+
+      - name: Publish to npm
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}  
+
