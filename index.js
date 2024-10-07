@@ -2,7 +2,6 @@
 
 import { program } from 'commander';
 import fs from 'fs-extra';
-import packages from './snippets-packages.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import {exec} from 'node:child_process'; 
@@ -98,7 +97,6 @@ program
 
       // Copy the snippet file content to the new file in the working directory
       fs.copySync(snippetFile, newSnippetFilePath);
-      console.log(chalk.yellow("Installing all the required packages for the snippet..."))
       console.log(chalk.green(`\nSnippet "${snippetName}" has been successfully created as "${snippetName}.js" in your current directory!\n`));
     } catch (err) {
       console.error(chalk.red('Error while generating snippet file:'), err);

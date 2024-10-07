@@ -165,6 +165,32 @@ This command will create a new file `multer-file-upload.js` in the current worki
     export const upload = multer({ storage });
 
    ```
+5. **`mongoose-con`**:
+   Sets up a file to connect to your mongodb database using `mongoose`.
+   **Code Snippet**:
+   ```js
+   import mongoose from 'mongoose';
+   function connectToDB(URI) {
+     mongoose.connect(URI).then(() => {
+          console.log("Succesfully connected to the database")
+      }).catch(err => {
+          console.error("An error Occured : ",err);
+      })
+    }
+    export default connectToDB;
+
+6. **`mongoose-schema`**:
+   Sets up a file to create a demo schema for your db using `mongoose`.
+   **Code Snippet**:
+   ```js
+   import mongoose from 'mongoose';
+   const schema = new mongoose.Schema({
+     key:String,
+   });
+
+   const model = mongoose.model("Model",schema);
+   export default model;
+
 
 ### 3. `run generate-ai-snippet <snippetName>`
 With the new AI-powered code generation feature, you can generate customized code snippets. For instance, to generate a code snippet for a specific backend functionality, you can run:
