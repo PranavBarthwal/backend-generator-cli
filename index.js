@@ -8,6 +8,7 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 import chalk from 'chalk';
 import ora from 'ora'; // Import the ora package
 import inquirer from 'inquirer'; // Import the inquirer package
+import { generateGitignore } from './gitignoreGenerator';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -59,6 +60,8 @@ program
   .description('Generate the backend project structure')
   .action(() => {
     const TEMPLATE_PATH = path.join(__dirname, 'templates');
+
+    generateGitignore(TEMPLATE_PATH);
 
     try {
       // Copy the template files to the destination path
