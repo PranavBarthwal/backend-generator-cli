@@ -11,6 +11,9 @@ import inquirer from 'inquirer'; // Import the inquirer package
 import { exec } from 'child_process'
 import { generateGitignore } from './gitignoreGenerator.js';
 import { dependencies } from './snippetdependencies.js';
+
+
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -61,8 +64,6 @@ program
   .description('Generate the backend project structure')
   .action(() => {
     const TEMPLATE_PATH = path.join(__dirname, 'templates');
-
-    generateGitignore(TEMPLATE_PATH);
 
     try {
       // Copy the template files to the destination path
