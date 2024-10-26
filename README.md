@@ -200,7 +200,34 @@ This command will create a new file `multer-file-upload.js` in the current worki
 
    ```
 
+7. 6. **`nodemailer`**:
+   Sets up email functionality in Node.js projects
 
+   **Code Snippet**:
+   ```js
+   const nodemailer = require('nodemailer');
+   require('dotenv').config();
+   const transporter = nodemailer.createTransport({
+    service: 'gmail',
+  auth: {
+    user: process.env.EMAIL,
+    pass: process.env.EMAIL_PASSWORD
+  },
+  });
+  const mailOptions = {
+    from: process.env.EMAIL,
+    to: 'recipient@example.com',
+    subject: 'Hello from Nodemailer',
+    text: 'This is a plain text body!',
+    html: '<p>This is an <b>HTML</b> body!</p>',
+  };
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      return console.log(error);
+    }
+    console.log('Email sent: ' + info.response);
+  })  
+   ```
 ### 3. `run generate-ai-snippet <snippetName>`
 With the new AI-powered code generation feature, you can generate customized code snippets. For instance, to generate a code snippet for a specific backend functionality, you can run:
 
