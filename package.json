@@ -1,6 +1,6 @@
 {
   "name": "backend-generator-cli",
-  "version": "3.0.10",
+  "version": "3.0.11",
   "main": "index.js",
   "type": "module",
   "bin": {
