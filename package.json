@@ -1,6 +1,6 @@
 {
   "name": "backend-generator-cli",
-  "version": "3.0.8",
+  "version": "3.0.12",
   "main": "index.js",
   "type": "module",
   "bin": {
@@ -16,6 +16,7 @@
     "dotenv": "^16.4.5",
     "fs-extra": "^11.2.0",
     "inquirer": "^10.2.2",
+    "nodemailer": "^6.9.15",
     "ora": "^8.1.0"
   },
   "keywords": [

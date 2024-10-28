@@ -8,7 +8,11 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 import chalk from 'chalk';
 import ora from 'ora'; // Import the ora package
 import inquirer from 'inquirer'; // Import the inquirer package
-import { generateGitignore } from './gitignoreGenerator';
+import { exec } from 'child_process'
+import { generateGitignore } from './gitignoreGenerator.js';
+import { dependencies } from './snippetdependencies.js';
+
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -61,8 +65,6 @@ program
   .action(() => {
     const TEMPLATE_PATH = path.join(__dirname, 'templates');
 
-    generateGitignore(TEMPLATE_PATH);
-
     try {
       // Copy the template files to the destination path
       fs.copySync(TEMPLATE_PATH, DESTINATION_PATH);
@@ -99,7 +101,24 @@ program
       // Copy the snippet file content to the new file in the working directory
       fs.copySync(snippetFile, newSnippetFilePath);
 
-      console.log(chalk.green(`\nSnippet "${snippetName}" has been successfully created as "${snippetName}.js" in your current directory!\n`));
+      console.log(
+        chalk.yellow("Installing the required packages for the snippet...")
+      );
+      exec(
+        `npm install ${dependencies[snippetName].join(" ")}`,
+        (err, stdout, stderr) => {
+          if (err) {
+            console.log("An Error Occured : ",err);
+            return;
+          }
+          console.log(stdout);
+          console.log(
+            chalk.green(
+              `\nSnippet "${snippetName}" has been successfully created as "${snippetName}.js" in your current directory!\n`
+            )
+          );
+        }
+      );
     } catch (err) {
       console.error(chalk.red('Error while generating snippet file:'), err);
     }
