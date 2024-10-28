@@ -228,6 +228,40 @@ This command will create a new file `multer-file-upload.js` in the current worki
     console.log('Email sent: ' + info.response);
   })  
    ```
+  
+8. **`cloudinary-util`**
+   Sets up Cloudinary functionality in a Node.js project
+
+   **Code Snippet**:
+   ```js
+   import { v2 as cloudinary } from 'cloudinary';
+   import fs from 'fs';  
+    // These values need to be defined in your environment variables (usually in a .env file)
+   cloudinary.config({ 
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME, 
+    api_key: process.env.CLOUDINARY_API_KEY, 
+    api_secret: process.env.CLOUDINARY_API_SECRET 
+   });
+
+    const uploadOnCloudinary = async (localFilePath) => {
+    try {
+        if (!localFilePath) return null;
+        
+        const response = await cloudinary.uploader.upload(localFilePath, {
+            resource_type: "auto"
+        });
+
+        fs.unlinkSync(localFilePath);  
+        return response;
+    } catch (error) {
+        fs.unlinkSync(localFilePath);  
+        return null;
+    }
+  };
+   export { uploadOnCloudinary };
+
+   ```
+
 ### 3. `run generate-ai-snippet <snippetName>`
 With the new AI-powered code generation feature, you can generate customized code snippets. For instance, to generate a code snippet for a specific backend functionality, you can run:
 
