@@ -487,4 +487,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
     <a href="https://twitter.com/pranavbarthwal_" target="_blank">Follow me on X</a>
   </p>
 </div>
-<p align="right">(<a href="#top">back to top</a>)</p>
+<p align="right"><a href="#top">back to top</a></p>
