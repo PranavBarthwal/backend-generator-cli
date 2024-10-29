@@ -1,5 +1,6 @@
 <img src="https://github.com/user-attachments/assets/1226438f-19e0-46e4-beff-5483e429ee69" width=200>
 
+<div id="top"></div>
 # Backend Generator CLI
 
 > **Now supporting AI powered code snippet generation!** 🚀
@@ -456,6 +457,7 @@ This flow demonstrates how you can set up your backend project structure and uti
 
 -   Add more predefined snippets for common backend use cases.
 -   Add a controller to get the most in-demand snippets.
+-   Implementing a feature that tracks and counts the number of downloads for each snippet.
 
 ## Our Contributors
 
@@ -485,3 +487,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
     <a href="https://twitter.com/pranavbarthwal_" target="_blank">Follow me on X</a>
   </p>
 </div>
+<p align="right">(<a href="#top">back to top</a>)</p>
