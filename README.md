@@ -457,7 +457,7 @@ This flow demonstrates how you can set up your backend project structure and uti
 
 -   Add more predefined snippets for common backend use cases.
 -   Add a controller to get the most in-demand snippets.
--   Implementing a feature that tracks and counts the number of downloads for each snippet.
+
 
 ## Our Contributors
 
