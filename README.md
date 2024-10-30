@@ -83,8 +83,22 @@ run generate-snippet multer-file-upload
 This command will create a new file `multer-file-upload.js` in the current working directory, containing a pre-configured snippet for handling file uploads using `multer`.
 
 ### Available Snippets
+1. **`express-setup`**:
+Sets up express server.
 
-1. **`async-ops-handler`**:
+**Code Snippet**:
+   ```js
+ import express from "express";
+
+const app=express();
+
+const PORT=process.env.PORT || 3000;
+
+app.listen(PORT, ()=> console.log(`Server started at ${PORT}`));
+
+     ```
+
+2. **`async-ops-handler`**:
    Handles asynchronous operations with error handling.
 
    **Code Snippet**:
@@ -100,7 +114,7 @@ This command will create a new file `multer-file-upload.js` in the current worki
     export { asyncHandler }
    ```
 
-2. **`custom-api-error`**:
+3. **`custom-api-error`**:
    Standardizes error responses for your API.
 
    **Code Snippet**:
@@ -129,7 +143,7 @@ This command will create a new file `multer-file-upload.js` in the current worki
     export { ApiError }
    ```
 
-3. **`custom-api-response`**:
+4. **`custom-api-response`**:
    Standardizes successful API responses.
 
    **Code Snippet**:
@@ -146,7 +160,7 @@ This command will create a new file `multer-file-upload.js` in the current worki
     export {ApiResponse}
    ```
 
-4. **`multer-file-upload`**:
+5. **`multer-file-upload`**:
    Sets up a file upload service using `multer`.
 
    **Code Snippet**:
@@ -165,7 +179,7 @@ This command will create a new file `multer-file-upload.js` in the current worki
     export const upload = multer({ storage });
 
    ```
-5. **`mongoose-con`**:
+6. **`mongoose-con`**:
    Sets up a connection to your mongodb using `mongoose`.
 
    **Code Snippet**:
@@ -183,7 +197,7 @@ This command will create a new file `multer-file-upload.js` in the current worki
 
 
    ```
-6. **`mongoose-schema`**:
+7. **`mongoose-schema`**:
    Sets up a basic schema for your db using `mongoose`.
 
    **Code Snippet**:
@@ -200,7 +214,7 @@ This command will create a new file `multer-file-upload.js` in the current worki
 
    ```
 
-7. 6. **`nodemailer`**:
+8. 6. **`nodemailer`**:
    Sets up email functionality in Node.js projects
 
    **Code Snippet**:
