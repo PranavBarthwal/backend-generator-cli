@@ -1,6 +1,7 @@
 <img src="https://github.com/user-attachments/assets/1226438f-19e0-46e4-beff-5483e429ee69" width=200>
 
 # Backend Generator CLI
+
 > **Now supporting AI powered code snippet generation!** 🚀
 
 ![npm](https://img.shields.io/npm/dt/backend-generator-cli?color=brightgreen&label=Total%20Downloads&style=for-the-badge) ![npm](https://img.shields.io/npm/dw/backend-generator-cli?color=blue&label=Weekly%20Downloads&style=for-the-badge)
@@ -9,21 +10,22 @@
 
 ## Key Features
 
-- **Instant Backend Setup**: Generate a clean, well-organized backend project structure with a single command.
-- **Best Practices Built-in**: The generated project follows industry-standard best practices for scalable backend development.
-- **Custom Code Snippets**: Insert predefined code snippets such as API error handling, file uploading, and more using simple CLI commands.
-- **AI-powered Custom Code Snippets**: Generate customizable code snippets using Generative AI with simple CLI commands.
-- **Modular and Extensible**: The tool allows you to customize and expand the project structure to meet your specific needs.
+-   **Instant Backend Setup**: Generate a clean, well-organized backend project structure with a single command.
+-   **Best Practices Built-in**: The generated project follows industry-standard best practices for scalable backend development.
+-   **Custom Code Snippets**: Insert predefined code snippets such as API error handling, file uploading, and more using simple CLI commands.
+-   **AI-powered Custom Code Snippets**: Generate customizable code snippets using Generative AI with simple CLI commands.
+-   **Modular and Extensible**: The tool allows you to customize and expand the project structure to meet your specific needs.
 
 ## Index
-- [Installation](#installation)
-- [Commands](#commands)
-  - [1. run create-project](#1-run-create-project)
-  - [2. run generate-snippet](#2-run-generate-snippet-snippet-name)
-  - [3. run generate-ai-snippet](#3-run-generate-ai-snippet-snippetname)
-- [Full User Journey Example](#full-user-journey-example)
-- [Future Enhancements](#future-enhancements)
-- [License](#license)
+
+-   [Installation](#installation)
+-   [Commands](#commands)
+    -   [1. run create-project](#1-run-create-project)
+    -   [2. run generate-snippet](#2-run-generate-snippet-snippet-name)
+    -   [3. run generate-ai-snippet](#3-run-generate-ai-snippet-snippetname)
+-   [Full User Journey Example](#full-user-journey-example)
+-   [Future Enhancements](#future-enhancements)
+-   [License](#license)
 
 ---
 
@@ -40,6 +42,7 @@ After installation, you will have access to two main commands: `create-project` 
 ## Commands
 
 ### 1. `run create-project`
+
 Generate a new backend project with a pre-configured folder structure:
 
 ```bash
@@ -72,7 +75,7 @@ This structure is clean, easy to navigate, and ready to be extended with your ow
 
 ### 2. `run generate-snippet <snippet-name>`
 
-Generate and inject predefined code snippets into your project. Snippets are placed in individual files in your current working directory. 
+Generate and inject predefined code snippets into your project. Snippets are placed in individual files in your current working directory.
 
 Example:
 
@@ -83,7 +86,7 @@ run generate-snippet multer-file-upload
 This command will create a new file `multer-file-upload.js` in the current working directory, containing a pre-configured snippet for handling file uploads using `multer`.
 
 ### Available Snippets
-1. **`express-setup`**:
+1. **`express-server`**:
 Sets up express server.
 
 **Code Snippet**:
@@ -101,79 +104,76 @@ app.listen(PORT, ()=> console.log(`Server started at ${PORT}`));
 2. **`async-ops-handler`**:
    Handles asynchronous operations with error handling.
 
-   **Code Snippet**:
-   ```js
-    const asyncHandler = (requestHandler) => {
-        return (req, res, next) => {
-            Promise
-            .resolve(requestHandler(req, res, next))
-            .catch((err) => next(err))
-        }
-    }
+    **Code Snippet**:
 
-    export { asyncHandler }
-   ```
+    ```js
+    const asyncHandler = (requestHandler) => {
+    	return (req, res, next) => {
+    		Promise.resolve(requestHandler(req, res, next)).catch((err) => next(err));
+    	};
+    };
+
+    export { asyncHandler };
+    ```
 
 3. **`custom-api-error`**:
    Standardizes error responses for your API.
 
-   **Code Snippet**:
-   ```js
-   class ApiError extends Error{
-        constructor(
-            statusCode,
-            message= "Something went wrong",
-            errors=[],
-            stack=""
-        ){
-            super(message);
-            this.statusCode = statusCode;
-            this.message = message;
-            this.data = null;
-            this.errors = errors;
-            
-            if(stack){
-                this.stack = stack;
-            }else{
-                Error.captureStackTrace(this, this.constructor);
-            }
-        }
+    **Code Snippet**:
+
+    ```js
+    class ApiError extends Error {
+    	constructor(statusCode, message = 'Something went wrong', errors = [], stack = '') {
+    		super(message);
+    		this.statusCode = statusCode;
+    		this.message = message;
+    		this.data = null;
+    		this.errors = errors;
+
+    		if (stack) {
+    			this.stack = stack;
+    		} else {
+    			Error.captureStackTrace(this, this.constructor);
+    		}
+    	}
     }
 
-    export { ApiError }
-   ```
+    export { ApiError };
+    ```
 
 4. **`custom-api-response`**:
    Standardizes successful API responses.
 
-   **Code Snippet**:
-   ```js
-    class ApiResponse{
-        constructor(statusCode, message="success", data){
-            this.statusCode = statusCode;
-            this.message = message;
-            this.data = data;
-            this.success = statusCode < 400;
-        }
+    **Code Snippet**:
+
+    ```js
+    class ApiResponse {
+    	constructor(statusCode, message = 'success', data) {
+    		this.statusCode = statusCode;
+    		this.message = message;
+    		this.data = data;
+    		this.success = statusCode < 400;
+    	}
     }
 
-    export {ApiResponse}
-   ```
+    export { ApiResponse };
+    ```
 
 5. **`multer-file-upload`**:
    Sets up a file upload service using `multer`.
 
-   **Code Snippet**:
-   ```js
-   import multer from "multer";
+    **Code Snippet**:
+
+    ```js
+    import multer from 'multer';
 
     const storage = multer.diskStorage({
-    destination: function(req, file, cb){
-        cb(null, './public/temp');
-    },
-    filename: function(req, file, cb){
-        cb(null, file.originalname);
-    }
+    	destination: function (req, file, cb) {
+    		cb(null, './public/temp');
+    	},
+    	filename: function (req, file, cb) {
+    		cb(null, file.originalname);
+    	},
     });
 
     export const upload = multer({ storage });
@@ -182,16 +182,20 @@ app.listen(PORT, ()=> console.log(`Server started at ${PORT}`));
 6. **`mongoose-con`**:
    Sets up a connection to your mongodb using `mongoose`.
 
-   **Code Snippet**:
-   ```js
-   import mongoose from 'mongoose';
+    **Code Snippet**:
 
-   function connectToDB(URI) {
-     mongoose.connect(URI).then(() => {
-         console.log("Connection to the db succesful");
-     }).catch(err => {
-         console.error("An error occcured : ",err);
-     })
+    ```js
+    import mongoose from 'mongoose';
+
+    function connectToDB(URI) {
+    	mongoose
+    		.connect(URI)
+    		.then(() => {
+    			console.log('Connection to the db succesful');
+    		})
+    		.catch((err) => {
+    			console.error('An error occcured : ', err);
+    		});
     }
     export default connectToDB;
 
@@ -200,49 +204,85 @@ app.listen(PORT, ()=> console.log(`Server started at ${PORT}`));
 7. **`mongoose-schema`**:
    Sets up a basic schema for your db using `mongoose`.
 
-   **Code Snippet**:
-   ```js
+    **Code Snippet**:
+
+    ```js
     import mongoose from 'mongoose';
 
     const schema = new mongoose.Schema({
-        key:String,
+    	key: String,
     });
 
-    const model = mongoose.model("Model",schema);
+    const model = mongoose.model('Model', schema);
 
     export default model;
+    ```
 
-   ```
-
-8. 6. **`nodemailer`**:
+8. **`nodemailer`**:
    Sets up email functionality in Node.js projects
 
-   **Code Snippet**:
-   ```js
-   const nodemailer = require('nodemailer');
-   require('dotenv').config();
-   const transporter = nodemailer.createTransport({
-    service: 'gmail',
-  auth: {
-    user: process.env.EMAIL,
-    pass: process.env.EMAIL_PASSWORD
-  },
-  });
-  const mailOptions = {
-    from: process.env.EMAIL,
-    to: 'recipient@example.com',
-    subject: 'Hello from Nodemailer',
-    text: 'This is a plain text body!',
-    html: '<p>This is an <b>HTML</b> body!</p>',
-  };
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      return console.log(error);
-    }
-    console.log('Email sent: ' + info.response);
-  })  
-   ```
+    **Code Snippet**:
+
+    ```js
+    const nodemailer = require('nodemailer');
+    require('dotenv').config();
+    const transporter = nodemailer.createTransport({
+    	service: 'gmail',
+    	auth: {
+    		user: process.env.EMAIL,
+    		pass: process.env.EMAIL_PASSWORD,
+    	},
+    });
+    const mailOptions = {
+    	from: process.env.EMAIL,
+    	to: 'recipient@example.com',
+    	subject: 'Hello from Nodemailer',
+    	text: 'This is a plain text body!',
+    	html: '<p>This is an <b>HTML</b> body!</p>',
+    };
+    transporter.sendMail(mailOptions, (error, info) => {
+    	if (error) {
+    		return console.log(error);
+    	}
+    	console.log('Email sent: ' + info.response);
+    });
+    ```
+
+9. **`cloudinary-util`**
+   Sets up Cloudinary functionality in a Node.js project
+
+    **Code Snippet**:
+
+    ```js
+    import { v2 as cloudinary } from 'cloudinary';
+    import fs from 'fs';
+    // These values need to be defined in your environment variables (usually in a .env file)
+    cloudinary.config({
+    	cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    	api_key: process.env.CLOUDINARY_API_KEY,
+    	api_secret: process.env.CLOUDINARY_API_SECRET,
+    });
+
+    const uploadOnCloudinary = async (localFilePath) => {
+    	try {
+    		if (!localFilePath) return null;
+
+    		const response = await cloudinary.uploader.upload(localFilePath, {
+    			resource_type: 'auto',
+    		});
+
+    		fs.unlinkSync(localFilePath);
+    		return response;
+    	} catch (error) {
+    		fs.unlinkSync(localFilePath);
+    		return null;
+    	}
+    };
+    export { uploadOnCloudinary };
+    ```
+
 ### 3. `run generate-ai-snippet <snippetName>`
+
 With the new AI-powered code generation feature, you can generate customized code snippets. For instance, to generate a code snippet for a specific backend functionality, you can run:
 
 ```bash
@@ -256,6 +296,7 @@ run generate-ai-snippet login-controller
 ```
 
 This will generate a code snippet for login-controller using AI that looks like :
+
 ```bash
 Generated Code Snippet for login-controller:
 
@@ -281,7 +322,7 @@ module.exports.login = async (req, res) => {
     res.json({ token, user: { _id: user._id, name: user.name, email: user.email } });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ message: 'Server error' });        
+    res.status(500).json({ message: 'Server error' });
   }
 };
 
@@ -355,12 +396,12 @@ This command will create a new file called `multer-file-upload.js` in the `src/u
 import multer from 'multer';
 
 const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, './public/temp');
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname);
-  }
+	destination: function (req, file, cb) {
+		cb(null, './public/temp');
+	},
+	filename: function (req, file, cb) {
+		cb(null, file.originalname);
+	},
 });
 
 export const upload = multer({ storage });
@@ -377,7 +418,7 @@ import { upload } from '../utils/multer-file-upload';
 const router = express.Router();
 
 router.post('/upload', upload.single('file'), (req, res) => {
-  res.send('File uploaded successfully');
+	res.send('File uploaded successfully');
 });
 
 export default router;
@@ -394,7 +435,7 @@ const app = express();
 app.use('/api', uploadRoute);
 
 app.listen(3000, () => {
-  console.log('Server is running on port 3000');
+	console.log('Server is running on port 3000');
 });
 ```
 
@@ -404,17 +445,15 @@ Continue building your application by adding your business logic, routes, contro
 
 This flow demonstrates how you can set up your backend project structure and utilize the code snippets generated by `backend-generator-cli` to accelerate your development.
 
-
 ## Future Enhancements
 
-- Add more predefined snippets for common backend use cases.
-- Add a controller to get the most in-demand snippets.
-
+-   Add more predefined snippets for common backend use cases.
+-   Add a controller to get the most in-demand snippets.
 
 ## Our Contributors
 
-- We extend our heartfelt gratitude for your invaluable contribution to our project! Your efforts play a pivotal role in elevating this project to greater heights.
-- Make sure you show some love by giving ⭐ to our repository.
+-   We extend our heartfelt gratitude for your invaluable contribution to our project! Your efforts play a pivotal role in elevating this project to greater heights.
+-   Make sure you show some love by giving ⭐ to our repository.
 
 <div align="center">
 
@@ -423,12 +462,12 @@ This flow demonstrates how you can set up your backend project structure and uti
   </a>
 </div>
 
-
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
 ---
+
 <br>
 
 <div align="center">
