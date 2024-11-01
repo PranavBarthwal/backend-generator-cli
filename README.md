@@ -153,9 +153,9 @@ This command will create a new file `multer-file-upload.js` in the current worki
         this.data = data;
         this.success = statusCode < 400;
     }
+     export {ApiResponse};
   }
-      export {ApiResponse};
-      
+    
    ```
    
 5. **`multer-file-upload`**:
