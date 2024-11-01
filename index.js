@@ -9,7 +9,7 @@ import chalk from 'chalk';
 import ora from 'ora'; // Import the ora package
 import inquirer from 'inquirer'; // Import the inquirer package
 import { exec } from 'child_process'
-import { generateGitignore } from './gitignoreGenerator.js';
+
 import { dependencies } from './snippetdependencies.js';
 
 

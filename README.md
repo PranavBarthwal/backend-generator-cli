@@ -93,27 +93,34 @@ run generate-snippet multer-file-upload
 This command will create a new file `multer-file-upload.js` in the current working directory, containing a pre-configured snippet for handling file uploads using `multer`.
 
 ### Available Snippets
+1. **`express-server`**:
+   Sets up express server.
+   
+   **Code Snippet**:
+   ```js
+   import express from "express";
+   const app = express();
+   const PORT = process.env.PORT || 3000;
+   app.listen(PORT, () => console.log(`Server started at ${PORT}`));
+  ```
 
-1. **`async-ops-handler`**:
+2.  **`async-ops-handler`**:
    Handles asynchronous operations with error handling.
 
     **Code Snippet**:
-
     ```js
     const asyncHandler = (requestHandler) => {
     	return (req, res, next) => {
     		Promise.resolve(requestHandler(req, res, next)).catch((err) => next(err));
     	};
     };
-
     export { asyncHandler };
     ```
 
-2. **`custom-api-error`**:
+3.   **`custom-api-error`**:
    Standardizes error responses for your API.
 
     **Code Snippet**:
-
     ```js
     class ApiError extends Error {
     	constructor(statusCode, message = 'Something went wrong', errors = [], stack = '') {
@@ -134,7 +141,7 @@ This command will create a new file `multer-file-upload.js` in the current worki
     export { ApiError };
     ```
 
-3. **`custom-api-response`**:
+4. **`custom-api-response`**:
    Standardizes successful API responses.
 
     **Code Snippet**:
@@ -152,7 +159,7 @@ This command will create a new file `multer-file-upload.js` in the current worki
     export { ApiResponse };
     ```
 
-4. **`multer-file-upload`**:
+5. **`multer-file-upload`**:
    Sets up a file upload service using `multer`.
 
     **Code Snippet**:
@@ -170,9 +177,9 @@ This command will create a new file `multer-file-upload.js` in the current worki
     });
 
     export const upload = multer({ storage });
-    ```
 
-5. **`mongoose-con`**:
+   ```
+6. **`mongoose-con`**:
    Sets up a connection to your mongodb using `mongoose`.
 
     **Code Snippet**:
@@ -191,9 +198,10 @@ This command will create a new file `multer-file-upload.js` in the current worki
     		});
     }
     export default connectToDB;
-    ```
 
-6. **`mongoose-schema`**:
+
+   ```
+7. **`mongoose-schema`**:
    Sets up a basic schema for your db using `mongoose`.
 
     **Code Snippet**:
@@ -208,23 +216,6 @@ This command will create a new file `multer-file-upload.js` in the current worki
     const model = mongoose.model('Model', schema);
 
     export default model;
-    ```
-
-7. **`rate-limit-middleware`**:
-   Sets up a rate limit middleware using `express-rate-limit`.
-
-    **Code Snippet**:
-
-    ```js
-    import rateLimit from 'express-rate-limit';
-
-    const limiter = rateLimit({
-    	windowMs: 15 * 60 * 1000,
-    	max: 1000,
-    	message: 'Too many requests from this IP, please try again after 15 minutes.',
-    });
-
-    export default limiter;
     ```
 
 8. **`nodemailer`**:

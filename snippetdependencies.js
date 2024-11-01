@@ -3,6 +3,8 @@ const dependencies = {
     "mongoose-schema" : ['mongoose'],
     "multer-file-upload" : ['multer'] ,
     "nodemailer": ['nodemailer'],
-   };  
+    "express-server":['express']   
+};
+     
    export {dependencies};
    
