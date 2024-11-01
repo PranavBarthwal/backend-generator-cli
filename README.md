@@ -163,29 +163,26 @@ This command will create a new file `multer-file-upload.js` in the current worki
    export const upload = multer({ storage });
    ```
 
-   
 6. **`mongoose-con`**:
-   Sets up a connection to your mongodb using `mongoose`.
+    
 
-    **Code Snippet**:
-
-    ```js
-    import mongoose from 'mongoose';
-
-    function connectToDB(URI) {
-    	mongoose
-    		.connect(URI)
-    		.then(() => {
-    			console.log('Connection to the db succesful');
-    		})
-    		.catch((err) => {
-    			console.error('An error occcured : ', err);
-    		});
+   **Code Snippet**:
+   ```js 
+      import mongoose from 'mongoose';
+      function connectToDB(URI) {
+       mongoose 
+      .connect(URI)
+      .then(() => {
+         console.log('Connection to the db succesful');
+     });
+      .catch((err) => {
+        console.error('An error occcured : ', err);
+   });
     }
-    export default connectToDB;
-
+  export default connectToDB;
 
    ```
+
 
 7. **`mongoose-schema`**:
    Sets up a basic schema for your db using `mongoose`.
