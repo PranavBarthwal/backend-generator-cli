@@ -124,12 +124,11 @@ This command will create a new file `multer-file-upload.js` in the current worki
         .catch((err) => next(err))
     }
   }
-
    export { asyncHandler }
    ```
 
 4. **`custom-api-response`**:
-    Standardizes successful API responses.
+   Standardizes successful API responses.
 
    **Code Snippet**:
    ```js
@@ -144,6 +143,7 @@ This command will create a new file `multer-file-upload.js` in the current worki
 
    export {ApiResponse}
    ```
+   
 5. **`multer-file-upload`**:
     Sets up a file upload service using `multer`.
 
