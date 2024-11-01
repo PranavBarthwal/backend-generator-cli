@@ -87,19 +87,15 @@ This command will create a new file `multer-file-upload.js` in the current worki
 
 ### Available Snippets
 1. **`express-server`**:
-Sets up express server.
-
-**Code Snippet**:
+   Sets up express server.
+   
+   **Code Snippet**:
    ```js
- import express from "express";
-
-const app=express();
-
-const PORT=process.env.PORT || 3000;
-
-app.listen(PORT, ()=> console.log(`Server started at ${PORT}`));
-
-     ```
+   import express from "express";
+   const app = express();
+   const PORT = process.env.PORT || 3000;
+   app.listen(PORT, () => console.log(`Server started at ${PORT}`));
+  ```
 
 2. **`async-ops-handler`**:
    Handles asynchronous operations with error handling.
