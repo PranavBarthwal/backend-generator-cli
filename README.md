@@ -95,6 +95,7 @@ This command will create a new file `multer-file-upload.js` in the current worki
    const app = express();
    const PORT = process.env.PORT || 3000;
    app.listen(PORT, () => console.log(`Server started at ${PORT}`));
+   
   ```
 
 2.  **`async-ops-handler`**:
@@ -108,6 +109,7 @@ This command will create a new file `multer-file-upload.js` in the current worki
     	};
     };
     export { asyncHandler };
+
     ```
 
 3.   **`custom-api-error`**:
@@ -132,6 +134,7 @@ This command will create a new file `multer-file-upload.js` in the current worki
     }
 
     export { ApiError };
+
     ```
 
 4. **`custom-api-response`**:
@@ -150,6 +153,7 @@ This command will create a new file `multer-file-upload.js` in the current worki
     }
 
     export { ApiResponse };
+
     ```
 
 5. **`multer-file-upload`**:
@@ -172,6 +176,7 @@ This command will create a new file `multer-file-upload.js` in the current worki
     export const upload = multer({ storage });
 
    ```
+   
 6. **`mongoose-con`**:
    Sets up a connection to your mongodb using `mongoose`.
 
@@ -194,6 +199,7 @@ This command will create a new file `multer-file-upload.js` in the current worki
 
 
    ```
+
 7. **`mongoose-schema`**:
    Sets up a basic schema for your db using `mongoose`.
 
