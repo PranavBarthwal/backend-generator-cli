@@ -116,7 +116,7 @@ This command will create a new file `multer-file-upload.js` in the current worki
    Standardizes error responses for your API.
 
     **Code Snippet**:
-    ```js
+   ```js
     class ApiError extends Error {
     	constructor(statusCode, message = 'Something went wrong', errors = [], stack = '') {
     		super(message);
