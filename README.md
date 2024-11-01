@@ -1,6 +1,7 @@
 <img src="https://github.com/user-attachments/assets/1226438f-19e0-46e4-beff-5483e429ee69" width=200>
 
 <div id="top"></div>
+
 # Backend Generator CLI
 
 > **Now supporting AI powered code snippet generation!** 🚀
