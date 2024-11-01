@@ -97,8 +97,7 @@ This command will create a new file `multer-file-upload.js` in the current worki
    const app = express();
    const PORT = process.env.PORT || 3000;
    app.listen(PORT, () => console.log(`Server started at ${PORT}`));
-
-    ```
+   ```
 
 2. **`async-ops-handler`**:
    Handles asynchronous operations with error handling.
@@ -108,11 +107,12 @@ This command will create a new file `multer-file-upload.js` in the current worki
    ```js
    const asyncHandler = (requestHandler) => {
      return (req, res, next) => {
-       Promise.resolve(requestHandler(req, res, next)).catch((err) => next(err));
+       Promise.resolve(requestHandler(req, res, next)).catch((err) =>
+         next(err),
+       );
      };
    };
    export { asyncHandler };
-
    ```
 
 3. **`async-ops-handler`**:
@@ -127,31 +127,32 @@ This command will create a new file `multer-file-upload.js` in the current worki
         .resolve(requestHandler(req, res, next))
         .catch((err) => next(err))
     }
-
-  }
-   export { asyncHandler }
-
    ```
+
+}
+export { asyncHandler }
+
+````
 
 4. **`custom-api-response`**:
-   Standardizes successful API responses.
+Standardizes successful API responses.
 
-   **Code Snippet**:
-   ```js
-    class ApiResponse{
-    constructor(statusCode, message="success", data){
-        this.statusCode = statusCode;
-        this.message = message;
-        this.data = data;
-        this.success = statusCode < 400;
-    }
-  }
+**Code Snippet**:
+```js
+ class ApiResponse{
+ constructor(statusCode, message="success", data){
+     this.statusCode = statusCode;
+     this.message = message;
+     this.data = data;
+     this.success = statusCode < 400;
+ }
+}
 
-   export {ApiResponse}
-   ```
+export {ApiResponse}
+````
 
 5. **`multer-file-upload`**:
-    Sets up a file upload service using `multer`.
+   Sets up a file upload service using `multer`.
 
    **Code Snippet**:
 
@@ -164,117 +165,118 @@ This command will create a new file `multer-file-upload.js` in the current worki
        filename: function(req, file, cb){
         cb(null, file.originalname);
     }
-
-  }
-  );
-
-   export const upload = multer({ storage });
-
    ```
 
-   
+}
+);
+
+export const upload = multer({ storage });
+
+````
+
+
 6. **`mongoose-con`**:
-   Sets up a connection to your mongodb using `mongoose`.
+Sets up a connection to your mongodb using `mongoose`.
 
-    **Code Snippet**:
+ **Code Snippet**:
 
-    ```js
-    import mongoose from 'mongoose';
+ ```js
+ import mongoose from 'mongoose';
 
-    function connectToDB(URI) {
-     mongoose
-      .connect(URI)
-      .then(() => {
-       console.log('Connection to the db succesful');
-      })
-      .catch((err) => {
-       console.error('An error occcured : ', err);
-      });
-    }
-    export default connectToDB;
+ function connectToDB(URI) {
+  mongoose
+   .connect(URI)
+   .then(() => {
+    console.log('Connection to the db succesful');
+   })
+   .catch((err) => {
+    console.error('An error occcured : ', err);
+   });
+ }
+ export default connectToDB;
 
 
-   ```
+````
 
 7. **`mongoose-schema`**:
    Sets up a basic schema for your db using `mongoose`.
 
-    **Code Snippet**:
+   **Code Snippet**:
 
-    ```js
-    import mongoose from 'mongoose';
+   ```js
+   import mongoose from "mongoose";
 
-    const schema = new mongoose.Schema({
+   const schema = new mongoose.Schema({
      key: String,
-    });
+   });
 
-    const model = mongoose.model('Model', schema);
+   const model = mongoose.model("Model", schema);
 
-    export default model;
-    ```
+   export default model;
+   ```
 
 8. **`nodemailer`**:
    Sets up email functionality in Node.js projects
 
-    **Code Snippet**:
+   **Code Snippet**:
 
-    ```js
-    const nodemailer = require('nodemailer');
-    require('dotenv').config();
-    const transporter = nodemailer.createTransport({
-     service: 'gmail',
+   ```js
+   const nodemailer = require("nodemailer");
+   require("dotenv").config();
+   const transporter = nodemailer.createTransport({
+     service: "gmail",
      auth: {
-      user: process.env.EMAIL,
-      pass: process.env.EMAIL_PASSWORD,
+       user: process.env.EMAIL,
+       pass: process.env.EMAIL_PASSWORD,
      },
-    });
-    const mailOptions = {
+   });
+   const mailOptions = {
      from: process.env.EMAIL,
-     to: 'recipient@example.com',
-     subject: 'Hello from Nodemailer',
-     text: 'This is a plain text body!',
-     html: '<p>This is an <b>HTML</b> body!</p>',
-    };
-    transporter.sendMail(mailOptions, (error, info) => {
+     to: "recipient@example.com",
+     subject: "Hello from Nodemailer",
+     text: "This is a plain text body!",
+     html: "<p>This is an <b>HTML</b> body!</p>",
+   };
+   transporter.sendMail(mailOptions, (error, info) => {
      if (error) {
-      return console.log(error);
+       return console.log(error);
      }
-     console.log('Email sent: ' + info.response);
-    });
-    ```
+     console.log("Email sent: " + info.response);
+   });
+   ```
 
 9. **`cloudinary-util`**
    Sets up Cloudinary functionality in a Node.js project
 
-    **Code Snippet**:
+   **Code Snippet**:
 
-    ```js
-    import { v2 as cloudinary } from 'cloudinary';
-    import fs from 'fs';
-    // These values need to be defined in your environment variables (usually in a .env file)
-    cloudinary.config({
+   ```js
+   import { v2 as cloudinary } from "cloudinary";
+   import fs from "fs";
+   // These values need to be defined in your environment variables (usually in a .env file)
+   cloudinary.config({
      cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
      api_key: process.env.CLOUDINARY_API_KEY,
      api_secret: process.env.CLOUDINARY_API_SECRET,
-    });
+   });
 
-    const uploadOnCloudinary = async (localFilePath) => {
+   const uploadOnCloudinary = async (localFilePath) => {
      try {
-      if (!localFilePath) return null;
+       if (!localFilePath) return null;
 
-      const response = await cloudinary.uploader.upload(localFilePath, {
-       resource_type: 'auto',
-      });
+       const response = await cloudinary.uploader.upload(localFilePath, {
+         resource_type: "auto",
+       });
 
-      fs.unlinkSync(localFilePath);
-      return response;
+       fs.unlinkSync(localFilePath);
+       return response;
      } catch (error) {
-      fs.unlinkSync(localFilePath);
-      return null;
+       fs.unlinkSync(localFilePath);
+       return null;
      }
-    };
-    export { uploadOnCloudinary };
-    ```
+   };
+   export { uploadOnCloudinary };
+   ```
 
 ### 3. `run generate-ai-snippet <snippetName>`
 
@@ -388,15 +390,15 @@ run generate-snippet multer-file-upload
 This command will create a new file called `multer-file-upload.js` in the `src/utils` directory, which is now your current working directory. The content of this file will look like this:
 
 ```js
-import multer from 'multer';
+import multer from "multer";
 
 const storage = multer.diskStorage({
- destination: function (req, file, cb) {
-  cb(null, './public/temp');
- },
- filename: function (req, file, cb) {
-  cb(null, file.originalname);
- },
+  destination: function (req, file, cb) {
+    cb(null, "./public/temp");
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  },
 });
 
 export const upload = multer({ storage });
@@ -407,13 +409,13 @@ export const upload = multer({ storage });
 Now that the file upload handler has been generated in the `utils` folder, you can import and use it in your application. For instance, in `src/routes/uploadRoute.js`:
 
 ```js
-import express from 'express';
-import { upload } from '../utils/multer-file-upload';
+import express from "express";
+import { upload } from "../utils/multer-file-upload";
 
 const router = express.Router();
 
-router.post('/upload', upload.single('file'), (req, res) => {
- res.send('File uploaded successfully');
+router.post("/upload", upload.single("file"), (req, res) => {
+  res.send("File uploaded successfully");
 });
 
 export default router;
@@ -422,15 +424,15 @@ export default router;
 Make sure that your main `app.js` or `index.js` includes this route:
 
 ```js
-import express from 'express';
-import uploadRoute from './routes/uploadRoute';
+import express from "express";
+import uploadRoute from "./routes/uploadRoute";
 
 const app = express();
 
-app.use('/api', uploadRoute);
+app.use("/api", uploadRoute);
 
 app.listen(3000, () => {
- console.log('Server is running on port 3000');
+  console.log("Server is running on port 3000");
 });
 ```
 
