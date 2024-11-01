@@ -9,7 +9,7 @@
 
 **Backend Generator CLI** is a simple yet powerful command-line tool that helps you quickly scaffold a well-structured backend project. With built-in best practices and customizable code snippets, this tool is designed to streamline your development workflow and help you focus on what matters: building your application.
 
-## 📈 GitHub Repository Stats
+## GitHub Repository Stats
 | 🌟 **Stars** | 🍴 **Forks** | 🐛 **Issues** | 🔔 **Open PRs** | 🔕 **Closed PRs** | 🛠️ **Languages** | ✅ **Contributors** |
 |--------------|--------------|---------------|-----------------|------------------|------------------|------------------|
 | ![GitHub stars](https://img.shields.io/github/stars/PranavBarthwal/backend-generator-cli) | ![forks](https://img.shields.io/github/forks/PranavBarthwal/backend-generator-cli) | ![issues](https://img.shields.io/github/issues/PranavBarthwal/backend-generator-cli?color=32CD32) | ![pull requests](https://img.shields.io/github/issues-pr/PranavBarthwal/backend-generator-cli?color=FFFF8F) | ![Closed PRs](https://img.shields.io/github/issues-pr-closed/PranavBarthwal/backend-generator-cli?color=20B2AA) | ![Languages](https://img.shields.io/github/languages/count/PranavBarthwal/backend-generator-cli?color=20B2AA) | ![Contributors](https://img.shields.io/github/contributors/PranavBarthwal/backend-generator-cli?color=00FA9A) |
