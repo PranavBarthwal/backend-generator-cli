@@ -136,10 +136,9 @@ This command will create a new file `multer-file-upload.js` in the current worki
             Error.captureStackTrace(this, this.constructor);
         }
     }
-     export { ApiError }
-  }
- 
-
+    };
+     export { ApiError };
+    
    ```
 
 4. **`custom-api-response`**:
