@@ -112,70 +112,57 @@ This command will create a new file `multer-file-upload.js` in the current worki
 
    ```
 
-3.   **`custom-api-error`**:
+3. **`async-ops-handler`**:
    Standardizes error responses for your API.
 
-    **Code Snippet**:
+   **Code Snippet**:
    ```js
-    class ApiError extends Error {
-    	constructor(statusCode, message = 'Something went wrong', errors = [], stack = '') {
-    		super(message);
-    		this.statusCode = statusCode;
-    		this.message = message;
-    		this.data = null;
-    		this.errors = errors;
-
-    		if (stack) {
-    			this.stack = stack;
-    		} else {
-    			Error.captureStackTrace(this, this.constructor);
-    		}
-    	}
+    const asyncHandler = (requestHandler) => {
+    return (req, res, next) => {
+        Promise
+        .resolve(requestHandler(req, res, next))
+        .catch((err) => next(err))
     }
+  }
 
-    export { ApiError };
-
-    ```
+   export { asyncHandler }
+   ```
 
 4. **`custom-api-response`**:
-   Standardizes successful API responses.
+    Standardizes successful API responses.
 
-    **Code Snippet**:
-
-    ```js
-    class ApiResponse {
-    	constructor(statusCode, message = 'success', data) {
-    		this.statusCode = statusCode;
-    		this.message = message;
-    		this.data = data;
-    		this.success = statusCode < 400;
-    	}
+   **Code Snippet**:
+   ```js
+    class ApiResponse{
+    constructor(statusCode, message="success", data){
+        this.statusCode = statusCode;
+        this.message = message;
+        this.data = data;
+        this.success = statusCode < 400;
     }
+  }
 
-    export { ApiResponse };
-
-    ```
-
+   export {ApiResponse}
+   ```
 5. **`multer-file-upload`**:
-   Sets up a file upload service using `multer`.
+    Sets up a file upload service using `multer`.
 
-    **Code Snippet**:
+   **Code Snippet**:
+   ```js
+         import multer from "multer";
+        const storage = multer.diskStorage({
+        destination: function(req, file, cb){
+        cb(null, './public/temp');
+       },
+       filename: function(req, file, cb){
+        cb(null, file.originalname);
+    }
+  });
 
-    ```js
-    import multer from 'multer';
-
-    const storage = multer.diskStorage({
-    	destination: function (req, file, cb) {
-    		cb(null, './public/temp');
-    	},
-    	filename: function (req, file, cb) {
-    		cb(null, file.originalname);
-    	},
-    });
-
-    export const upload = multer({ storage });
+   export const upload = multer({ storage });
 
    ```
+
    
 6. **`mongoose-con`**:
    Sets up a connection to your mongodb using `mongoose`.
