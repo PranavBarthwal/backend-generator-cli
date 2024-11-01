@@ -153,8 +153,8 @@ This command will create a new file `multer-file-upload.js` in the current worki
         this.data = data;
         this.success = statusCode < 400;
     }
+    };
      export {ApiResponse};
-   }
     
    ```
    
@@ -171,9 +171,9 @@ This command will create a new file `multer-file-upload.js` in the current worki
        filename: function(req, file, cb){
         cb(null, file.originalname);
     }
-    export const upload = multer({ storage });
     }
-  );
+    );
+     export const upload = multer({ storage });
    ```
 
    
