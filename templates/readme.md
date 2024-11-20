@@ -41,7 +41,7 @@ npm install -g backend-generator-cli
 Once installed, you can generate a backend project structure by simply running the following command:
 
 ```bash
-backend-gen
+run create-project
 ```
 
 This will create a folder structure like the one shown above, including a `package.json` template.
