@@ -104,7 +104,7 @@ This command will create a new file `multer-file-upload.js` in the current worki
    app.listen(PORT, () => console.log(`Server started at ${PORT}`));
    ```
 
-2.  **`async-ops-handler`**:
+2. **`async-ops-handler`**:
    Handles asynchronous operations with error handling.
 
     **Code Snippet**:
@@ -117,8 +117,8 @@ This command will create a new file `multer-file-upload.js` in the current worki
     export { asyncHandler };
     ```
 
-3.   **`custom-api-error`**:
-   Standardizes error responses for your API.
+3. **`custom-api-error`**:
+    Standardizes error responses for your API.
 
     **Code Snippet**:
     ```js
